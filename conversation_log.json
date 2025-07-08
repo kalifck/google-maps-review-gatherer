@@ -1,0 +1,56 @@
+{
+    "development_log": [
+        {
+            "step": "Initial Request",
+            "description": "Developed a Chrome extension for extracting data from Google Maps place pages (Manifest V3)."
+        },
+        {
+            "step": "File Generation",
+            "description": "Created `manifest.json`, `popup.html`, `popup.css`, `popup.js`, `service-worker.js`, and `content-script.js`."
+        },
+        {
+            "step": "Error 1 (Invalid `web_accessible_resources`)",
+            "description": "Resolved by removing the `web_accessible_resources` entry from `manifest.json` as `content-script.js` is injected programmatically."
+        },
+        {
+            "step": "Error 2 (Trailing Comma in `manifest.json`)",
+            "description": "Corrected a syntax error in `manifest.json` by removing a trailing comma."
+        },
+        {
+            "step": "Feature 1 (Continuous Data Gathering & Visual Feedback)",
+            "description": "Implemented a `MutationObserver` (later replaced by `setInterval`) in `content-script.js` for continuous scanning of reviews as the user scrolls. Added visual feedback: a 'scribe-beacon' button to toggle highlighting of gathered reviews and a brief animation for newly discovered reviews."
+        },
+        {
+            "step": "Feature 2 (Clear Data Button & Live Data Viewer)",
+            "description": "Added a 'Clear Scrolls' button to `popup.html` and `popup.js` to clear stored data. Implemented a live data viewer in `popup.html` and `popup.js` to show collected data in real-time."
+        },
+        {
+            "step": "Error 3 (Content Script Crash)",
+            "description": "Diagnosed and fixed a silent crash in `content-script.js` related to `wisdomScroll[placeId]` being undefined, ensuring the scanner's resilience."
+        },
+        {
+            "step": "Error 4 (Place Name Detection & Highlighting)",
+            "description": "Identified that the script failed on non-place pages (e.g., contributor profiles) due to reliance on `h1.DUwDvf`. Implemented URL-based place name extraction as the primary method, with `h1` as a fallback, ensuring broader compatibility. Confirmed highlighting functionality was restored and persistent."
+        },
+        {
+            "step": "Feature 3 (Star Rating Extraction)",
+            "description": "Added logic to `content-script.js` to extract and store the star rating for each review."
+        },
+        {
+            "step": "Feature 4 (Reviews with No Text)",
+            "description": "Modified `content-script.js` to correctly capture reviews that only have a star rating (no text)."
+        },
+        {
+            "step": "Error 5 (Data Duplication)",
+            "description": "Identified that different URL parameters caused duplicate place entries. Implemented canonical Google Place ID extraction from the URL to ensure unique place identification and prevent duplication. Ensured data merging for existing places."
+        },
+        {
+            "step": "Error 6 (Reviews Page Gathering)",
+            "description": "Fixed a regression where reviews were not gathered from the dedicated 'all reviews' page by ensuring the script could retrieve the place name from storage if already known, allowing continuous scanning on all relevant Google Maps pages."
+        },
+        {
+            "step": "Feature 5 (Improved Popup Visualization)",
+            "description": "Enhanced the `popup.js` display to clearly distinguish between different places and show review counts."
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Gatherer</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Data Oracle</h1>
+        <div id="status-container">
+            <div id="status-light" class="idle"></div>
+            <p id="status-text">Idle</p>
+        </div>
+        <div class="button-group">
+            <button id="start-gathering" class="action-button">Begin Gathering</button>
+            <button id="stop-gathering" class="action-button hidden">Cease Gathering</button>
+        </div>
+        <div class="secondary-button-group">
+             <button id="download-data" class="download-button" disabled>Download Scrolls</button>
+             <button id="clear-data" class="clear-button">Clear Scrolls</button>
+        </div>
+        <div id="live-data-container">
+            <pre id="live-data-scroll"></pre>
+        </div>
+        <div id="individual-downloads-container">
+            <h2>Download Individual Scroll</h2>
+            <div id="place-buttons-grid">
+                <!-- Individual place download buttons will be rendered here -->
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>

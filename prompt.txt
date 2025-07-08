@@ -1,0 +1,37 @@
+Develop a detailed technical specification for a standalone Chrome extension designed for extracting comprehensive data from individual Google Maps place pages. The data acquisition process is entirely user-driven, relying on the user actively Browse and manually navigating through Google Maps pages.
+
+The extension must feature a robust data acquisition module capable of extracting all publicly available information visible on the currently active Google Maps place page when a user-initiated 'Start Gathering Data' button within the extension's popup is clicked. This data collection will continue as the user manually navigates between different Google Maps place or reviewer profile pages, adding new data to a cumulative internal store within the browser's local storage or IndexedDB.
+
+For each newly visited and processed Google Maps page (place or reviewer profile), the extension should extract:
+
+For Place Pages:
+
+The place's name.
+
+Aggregated rating.
+
+All available text reviews (full content) visible on the current page view without requiring further interaction to load more content.
+
+Links to all user-submitted photos for the specified place visible on the current page view.
+
+For Reviewer Profile Pages (if user manually navigates to one):
+
+The reviewer's total number of reviews posted.
+
+Local Guide status (if applicable).
+
+All other publicly visible reviews they have ever posted on Google Maps that are immediately visible on the current page view without requiring further interaction to load more content.
+
+The primary data acquisition method for the extension will be JavaScript-based web scraping and DOM manipulation, strictly limited to the content present in the active browser tab. The collected data must be structured as a single, cumulative nested JSON object. This JSON structure should maintain a collection of unique place entries, with each place entry containing its details and an array of review objects. Each review object must contain the full review text, associated image links, and a nested object for the reviewer's details, which in turn should include their total reviews, Local Guide status, and an array of their review history (each entry being a review object with text and rating, limited to what's visible).
+
+The Chrome extension's user interface should be minimalist, featuring a browser action icon. Clicking the icon should open a popup with:
+
+A prominent 'Start Gathering Data' button to initiate the collection process.
+
+A 'Stop Gathering Data' button to halt the collection process.
+
+A clear visual indicator of the collection status (e.g., 'Collecting...' or 'Idle').
+
+A 'Download JSON' button that, when clicked, allows the user to export the entire cumulative dataset collected in the current session as a well-formatted JSON file.
+
+The collected data must persist within the browser's local storage or IndexedDB across Browse sessions until explicitly cleared by the user or the extension.
